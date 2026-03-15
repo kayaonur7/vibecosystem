@@ -1,18 +1,18 @@
 # vibecosystem
 
 ```
-        _ _                               _
- __   _(_) |__   ___  ___ ___  ___ _   _ ___| |_ ___ _ __ ___
- \ \ / / | '_ \ / _ \/ __/ _ \/ __| | | / __| __/ _ \ '_ ` _ \
-  \ V /| | |_) |  __/ (_| (_) \__ \ |_| \__ \ ||  __/ | | | | |
-   \_/ |_|_.__/ \___|\___\___/|___/\__, |___/\__\___|_| |_| |_|
-                                   |___/
-                           v1.0 · by @vibeeval
+ ╔═══════════════════════════════════════════════╗
+ ║                                               ║
+ ║   v i b e c o s y s t e m                     ║
+ ║   ─────────────────────────                   ║
+ ║   AI Software Team · v1.0                     ║
+ ║                                               ║
+ ║   119 agents  ·  202 skills  ·  48 hooks      ║
+ ║                                               ║
+ ║   by @vibeeval                                ║
+ ║                                               ║
+ ╚═══════════════════════════════════════════════╝
 ```
-
-You are running **vibecosystem** — a full AI software team built on Claude Code.
-
-119 agents. 202 skills. 48 hooks. Zero manual work.
 
 ## Active systems
 

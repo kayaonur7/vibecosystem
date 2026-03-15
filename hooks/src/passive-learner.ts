@@ -6,6 +6,7 @@
 import { readFileSync, appendFileSync, existsSync, mkdirSync } from 'fs';
 import { join, extname, basename } from 'path';
 import { homedir } from 'os';
+import { getProjectIdentity } from './shared/project-identity.js';
 
 interface PostToolInput {
   session_id: string;
@@ -27,6 +28,8 @@ interface Instinct {
   pattern: string;
   detail: string;
   confidence: number;
+  project?: string;      // proje hash (cross-project learning)
+  projectName?: string;  // okunabilir proje ismi
 }
 
 // Error pattern'leri (Bash output'undan)
@@ -164,8 +167,16 @@ function main() {
     if (errInst) instincts.push({ ...errInst, session: sessionId });
   }
 
-  // Instinct'leri yaz
+  // Instinct'lere project tag ekle
   if (instincts.length > 0) {
+    const identity = getProjectIdentity();
+    if (identity) {
+      for (const inst of instincts) {
+        inst.project = identity.hash;
+        inst.projectName = identity.name;
+      }
+    }
+
     const logDir = join(homedir(), '.claude');
     if (!existsSync(logDir)) mkdirSync(logDir, { recursive: true });
     const logPath = join(logDir, 'instincts.jsonl');

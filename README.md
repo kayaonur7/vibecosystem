@@ -23,7 +23,7 @@ vibecosystem is a complete [Claude Code](https://docs.anthropic.com/en/docs/clau
 1. **119 agents** — specialized roles from frontend-dev to security-analyst
 2. **202 skills** — reusable knowledge from TDD workflows to Kubernetes patterns
 3. **48 hooks** — TypeScript sensors that observe, filter, and inject context
-4. **16 rules** — behavioral guidelines that shape every agent's output
+4. **17 rules** — behavioral guidelines that shape every agent's output
 5. **Self-learning** — every error becomes a rule, automatically
 
 After setup, you say "build a feature" and 20+ agents coordinate across 5 phases.
@@ -74,13 +74,14 @@ Bug reproduction → replay           (backup: sleuth)
 
 **Self-Learning Pipeline** turns mistakes into permanent knowledge:
 ```
-Error happens → passive-learner captures pattern
-→ consolidator groups & counts
+Error happens → passive-learner captures pattern (+ project tag)
+→ consolidator groups & counts (per-project + global)
 → confidence >= 5 → auto-inject into context
+→ 2+ projects, 5+ total → cross-project promotion
 → 10x repeat → permanent .md rule file
 ```
 
-No manual intervention. The system writes its own rules.
+No manual intervention. The system writes its own rules — and shares them across projects.
 
 ## Core Features
 
@@ -113,6 +114,27 @@ Developer implements → code-reviewer + verifier check
 → PASS → next task
 → FAIL → feedback to developer, retry (max 3)
 → 3x FAIL → escalate (reassign / decompose / defer)
+```
+
+### Cross-Project Learning
+
+Patterns learned in one project automatically benefit all your projects.
+
+```
+Project A: add-error-handling (3x) ─┐
+                                     ├→ 2+ projects, 5+ total → GLOBAL
+Project B: add-error-handling (4x) ─┘
+                                     ↓
+Next session in ANY project → "add-error-handling" injected as global pattern
+```
+
+Each project gets its own pattern store. When the same pattern appears in 2+ projects with 5+ total occurrences, it's promoted to a global pattern that benefits every project — even brand new ones.
+
+```bash
+node ~/.claude/hooks/dist/instinct-cli.mjs portfolio      # All projects
+node ~/.claude/hooks/dist/instinct-cli.mjs global          # Global patterns
+node ~/.claude/hooks/dist/instinct-cli.mjs project <name>  # Project detail
+node ~/.claude/hooks/dist/instinct-cli.mjs stats           # Statistics
 ```
 
 ### Canavar Cross-Training
@@ -155,6 +177,7 @@ Agent error → error-ledger.jsonl → skill-matrix.json
 │  ┌──────────────────────────────────────┐                │
 │  │  Self-Learning Pipeline             │                │
 │  │  instincts → consolidate → rules    │                │
+│  │  + cross-project promotion          │                │
 │  └──────────────────────────────────────┘                │
 │                                                         │
 │  ┌──────────────────────────────────────┐                │
@@ -190,6 +213,7 @@ Agent error → error-ledger.jsonl → skill-matrix.json
 | Specialized agents | **119** | 0 | 0 | 0 |
 | Self-learning | **Yes** | No | No | No |
 | Agent swarm coordination | **Yes** | No | No | No |
+| Cross-project learning | **Yes** | No | No | No |
 | Cross-agent error training | **Yes** | No | No | No |
 | Dev-QA retry loop | **Yes** | No | No | No |
 | Adaptive hook loading | **Yes** | No | No | No |
@@ -206,7 +230,7 @@ Agent error → error-ledger.jsonl → skill-matrix.json
 | `agents/` | 119 | Markdown agent definitions with specialized prompts |
 | `skills/` | 202 | Reusable knowledge — TDD, security, patterns, frameworks |
 | `hooks/src/` | 48 | TypeScript hooks — sensors, learners, validators |
-| `rules/` | 16 | Behavioral guidelines — coding style, safety, QA |
+| `rules/` | 17 | Behavioral guidelines — coding style, safety, QA |
 
 ---
 
@@ -221,6 +245,7 @@ Agent error → error-ledger.jsonl → skill-matrix.json
 | Agent format | Markdown + YAML frontmatter |
 | Skill format | prompt.md / SKILL.md |
 | Cross-training | JSONL ledger + JSON skill matrix |
+| Cross-project learning | Per-project instinct stores + global promotion |
 
 ---
 

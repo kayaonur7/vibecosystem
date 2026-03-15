@@ -1,14 +1,17 @@
 /**
  * Instinct Loader - SessionStart hook
  *
- * Session basinda olgun instinct'leri (confidence >= 5) okur
- * ve context'e enjekte eder. Claude bu pattern'lari bilir.
- *
- * Canavar entegrasyonu: Son 7 gunun en sik takim hatalarini da enjekte eder.
+ * Session basinda:
+ * 1. Proje-ozel olgun instinct'leri oku (projects/{hash}/instincts/)
+ * 2. Global cross-project instinct'leri oku (global-instincts.json)
+ * 3. Fallback: legacy mature-instincts.json
+ * 4. Canavar takim hatalarini oku
+ * 5. Hepsini context'e enjekte et
  */
 import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
 import { homedir } from 'os';
+import { getProjectIdentity } from './shared/project-identity.js';
 
 interface MatureInstinct {
   pattern: string;
@@ -19,10 +22,28 @@ interface MatureInstinct {
   promoted: boolean;
 }
 
-const INJECT_THRESHOLD = 5;  // Bu ve ustu context'e enjekte edilir
-const MAX_INJECT = 10;       // En fazla 10 instinct enjekte et
-const TEAM_ERRORS_DAYS = 7;  // Son X gunun takim hatalari
-const MAX_TEAM_ERRORS = 5;   // En fazla X hata goster
+interface ProjectSource {
+  hash: string;
+  name: string;
+  count: number;
+  lastSeen: string;
+}
+
+interface GlobalInstinct {
+  pattern: string;
+  type: string;
+  totalCount: number;
+  projects: ProjectSource[];
+  confidence: number;
+  examples: string[];
+  promotedAt: string;
+}
+
+const INJECT_THRESHOLD = 5;
+const MAX_INJECT = 10;
+const MAX_GLOBAL_INJECT = 5;
+const TEAM_ERRORS_DAYS = 7;
+const MAX_TEAM_ERRORS = 5;
 
 interface ErrorEntry {
   ts: string;
@@ -37,66 +58,134 @@ interface ErrorEntry {
 }
 
 function main() {
-  // stdin oku (SessionStart input)
   try { readFileSync(0, 'utf-8'); } catch { /* ok */ }
 
-  const maturePath = join(homedir(), '.claude', 'mature-instincts.json');
+  const claudeDir = join(homedir(), '.claude');
+  const identity = getProjectIdentity();
+  const lines: string[] = [];
 
-  if (!existsSync(maturePath)) {
-    console.log('{}');
-    return;
+  // 1. Proje-ozel instinct'ler
+  let projectMature: MatureInstinct[] = [];
+  if (identity) {
+    const projectMaturePath = join(claudeDir, 'projects', identity.hash, 'instincts', 'mature-instincts.json');
+    if (existsSync(projectMaturePath)) {
+      try {
+        projectMature = JSON.parse(readFileSync(projectMaturePath, 'utf-8'));
+      } catch { /* skip */ }
+    }
   }
 
-  let instincts: MatureInstinct[];
-  try {
-    instincts = JSON.parse(readFileSync(maturePath, 'utf-8'));
-  } catch {
-    console.log('{}');
-    return;
-  }
-
-  // Olgun instinct'leri filtrele
-  const mature = instincts
+  const projectInjectable = projectMature
     .filter(i => i.confidence >= INJECT_THRESHOLD)
     .sort((a, b) => b.confidence - a.confidence)
     .slice(0, MAX_INJECT);
 
-  if (mature.length === 0) {
-    console.log('{}');
+  // 2. Global cross-project instinct'ler
+  let globalInstincts: GlobalInstinct[] = [];
+  const globalPath = join(claudeDir, 'global-instincts.json');
+  if (existsSync(globalPath)) {
+    try {
+      globalInstincts = JSON.parse(readFileSync(globalPath, 'utf-8'));
+    } catch { /* skip */ }
+  }
+
+  const globalInjectable = globalInstincts.slice(0, MAX_GLOBAL_INJECT);
+
+  // 3. Fallback: legacy mature-instincts.json (proje-ozel yoksa)
+  let legacyMature: MatureInstinct[] = [];
+  if (projectInjectable.length === 0) {
+    const legacyPath = join(claudeDir, 'mature-instincts.json');
+    if (existsSync(legacyPath)) {
+      try {
+        legacyMature = JSON.parse(readFileSync(legacyPath, 'utf-8'));
+      } catch { /* skip */ }
+    }
+  }
+
+  const legacyInjectable = legacyMature
+    .filter(i => i.confidence >= INJECT_THRESHOLD)
+    .sort((a, b) => b.confidence - a.confidence)
+    .slice(0, MAX_INJECT);
+
+  // Hicbir sey yoksa cik
+  if (projectInjectable.length === 0 && globalInjectable.length === 0 && legacyInjectable.length === 0) {
+    // Yine de takim hatalarini kontrol et
+    const teamErrorLines = loadTeamErrors();
+    if (teamErrorLines.length > 0) {
+      console.log(JSON.stringify({
+        result: 'Loaded team errors',
+        systemMessage: teamErrorLines.join('\n'),
+      }));
+    } else {
+      console.log('{}');
+    }
     return;
   }
 
   // Context mesaji olustur
-  const lines: string[] = [
-    '--- LEARNED PATTERNS (Otomatik Ogrenilmis) ---',
-    '',
-  ];
-
-  for (const inst of mature) {
-    const promoted = inst.promoted ? ' [RULE]' : '';
-    lines.push(`[${inst.type}] ${inst.pattern} (${inst.count}x)${promoted}`);
-    if (inst.examples.length > 0) {
-      lines.push(`  ornek: ${inst.examples[0]}`);
+  if (projectInjectable.length > 0) {
+    const projectName = identity?.name || 'unknown';
+    lines.push(`--- PROJECT PATTERNS: ${projectName} ---`);
+    lines.push('');
+    for (const inst of projectInjectable) {
+      const promoted = inst.promoted ? ' [RULE]' : '';
+      lines.push(`[${inst.type}] ${inst.pattern} (${inst.count}x)${promoted}`);
+      if (inst.examples.length > 0) {
+        lines.push(`  ornek: ${inst.examples[0]}`);
+      }
     }
+    lines.push('');
   }
 
-  lines.push('');
-  lines.push(`--- ${mature.length} pattern, ${instincts.length} toplam ---`);
+  if (legacyInjectable.length > 0) {
+    lines.push('--- LEARNED PATTERNS (Otomatik Ogrenilmis) ---');
+    lines.push('');
+    for (const inst of legacyInjectable) {
+      const promoted = inst.promoted ? ' [RULE]' : '';
+      lines.push(`[${inst.type}] ${inst.pattern} (${inst.count}x)${promoted}`);
+      if (inst.examples.length > 0) {
+        lines.push(`  ornek: ${inst.examples[0]}`);
+      }
+    }
+    lines.push('');
+  }
 
-  // Canavar: Takim hatalarini enjekte et
+  if (globalInjectable.length > 0) {
+    lines.push('--- GLOBAL PATTERNS (Cross-Project) ---');
+    lines.push('');
+    for (const gi of globalInjectable) {
+      const projectNames = gi.projects.map(p => p.name).join(', ');
+      lines.push(`[${gi.type}] ${gi.pattern} (${gi.totalCount}x across ${gi.projects.length} projects)`);
+      lines.push(`  projeler: ${projectNames}`);
+      if (gi.examples.length > 0) {
+        lines.push(`  ornek: ${gi.examples[0]}`);
+      }
+    }
+    lines.push('');
+  }
+
+  const totalProject = projectInjectable.length;
+  const totalGlobal = globalInjectable.length;
+  const totalLegacy = legacyInjectable.length;
+  lines.push(`--- ${totalProject + totalGlobal + totalLegacy} pattern toplam (${totalProject} project, ${totalGlobal} global, ${totalLegacy} legacy) ---`);
+
+  // Canavar takim hatalari
   const teamErrorLines = loadTeamErrors();
   if (teamErrorLines.length > 0) {
     lines.push('');
     lines.push(...teamErrorLines);
   }
 
-  const resultMsg = teamErrorLines.length > 0
-    ? `Loaded ${mature.length} patterns + team errors`
-    : `Loaded ${mature.length} learned patterns`;
+  const parts: string[] = [];
+  if (totalProject > 0) parts.push(`${totalProject} project`);
+  if (totalGlobal > 0) parts.push(`${totalGlobal} global`);
+  if (totalLegacy > 0) parts.push(`${totalLegacy} legacy`);
+  if (teamErrorLines.length > 0) parts.push('team errors');
+  const resultMsg = `Loaded ${parts.join(' + ')} patterns`;
 
   console.log(JSON.stringify({
     result: resultMsg,
-    systemMessage: lines.join('\n')
+    systemMessage: lines.join('\n'),
   }));
 }
 
@@ -121,7 +210,6 @@ function loadTeamErrors(): string[] {
 
   if (recent.length === 0) return [];
 
-  // Pattern + agent bazli grupla
   const grouped = new Map<string, { count: number; agent: string; lesson: string }>();
   for (const e of recent) {
     const key = `${e.agent_type}:${e.error_pattern}`;
@@ -133,7 +221,6 @@ function loadTeamErrors(): string[] {
     }
   }
 
-  // En sik hatalar
   const sorted = [...grouped.values()]
     .sort((a, b) => b.count - a.count)
     .slice(0, MAX_TEAM_ERRORS);

@@ -4,6 +4,13 @@
 
 **Your AI software team. Built on Claude Code.**
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Agents](https://img.shields.io/badge/agents-119-blue.svg)](#agents)
+[![Skills](https://img.shields.io/badge/skills-208-green.svg)](#skills)
+[![Hooks](https://img.shields.io/badge/hooks-48-orange.svg)](#hooks)
+[![TypeScript](https://img.shields.io/badge/hooks-TypeScript-blue.svg)](https://www.typescriptlang.org/)
+[![Validate](https://github.com/vibeeval/vibecosystem/actions/workflows/validate.yml/badge.svg)](https://github.com/vibeeval/vibecosystem/actions/workflows/validate.yml)
+
 [Turkce](#turkce) | [English](#english) | [Espanol](docs/README_ES.md) | [Francais](docs/README_FR.md) | [Deutsch](docs/README_DE.md) | [Portugues](docs/README_PT.md) | [Italiano](docs/README_IT.md) | [Nederlands](docs/README_NL.md) | [中文](docs/README_ZH.md) | [日本語](docs/README_JA.md) | [한국어](docs/README_KO.md) | [العربية](docs/README_AR.md) | [हिन्दी](docs/README_HI.md) | [Русский](docs/README_RU.md)
 
 ![vibecosystem](assets/gif1-numbers.gif)
@@ -11,6 +18,8 @@
 </div>
 
 vibecosystem turns Claude Code into a full AI software team — 119 specialized agents that plan, build, review, test, and learn from every mistake. No configuration needed — just install and code.
+
+> **v1.1**: 6 new skills (UI/UX patterns, brand identity, pentest methodology, and more), 5 enhanced agents, 3 new rules. See [UPGRADING.md](UPGRADING.md) for details.
 
 ## The Problem
 
@@ -21,9 +30,9 @@ Claude Code is powerful, but it's one assistant. You prompt, it responds, you re
 vibecosystem is a complete [Claude Code](https://docs.anthropic.com/en/docs/claude-code) ecosystem that creates a self-organizing AI team:
 
 1. **119 agents** — specialized roles from frontend-dev to security-analyst
-2. **202 skills** — reusable knowledge from TDD workflows to Kubernetes patterns
+2. **208 skills** — reusable knowledge from TDD workflows to Kubernetes patterns
 3. **48 hooks** — TypeScript sensors that observe, filter, and inject context
-4. **17 rules** — behavioral guidelines that shape every agent's output
+4. **20 rules** — behavioral guidelines that shape every agent's output
 5. **Self-learning** — every error becomes a rule, automatically
 
 After setup, you say "build a feature" and 20+ agents coordinate across 5 phases.
@@ -267,6 +276,16 @@ implicit coordination through context.
 - No network requests, no telemetry, no cloud sync
 - Self-learned rules go to `~/.claude/rules/`
 - Hooks run locally via Claude Code's native hook system
+
+---
+
+## Inspired By
+
+vibecosystem stands on the shoulders of great open-source projects:
+
+- **[Shannon](https://github.com/KeygraphHQ/Shannon)** by KeygraphHQ — Result<T,E> pattern, pentest pipeline, comment philosophy
+- **[UI UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max)** by nextlevelbuilder — Named UX rules, UI style catalog, design token architecture
+- **[Game Studios](https://github.com/Donchitos/game-studios)** by Donchitos — Context resilience, incremental writing, gate-check system
 
 ---
 

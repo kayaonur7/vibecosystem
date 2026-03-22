@@ -6,9 +6,9 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Agents](https://img.shields.io/badge/agents-119-blue.svg)](#agents)
-[![Skills](https://img.shields.io/badge/skills-208-green.svg)](#skills)
-[![Hooks](https://img.shields.io/badge/hooks-48-orange.svg)](#hooks)
-[![TypeScript](https://img.shields.io/badge/hooks-TypeScript-blue.svg)](https://www.typescriptlang.org/)
+[![Skills](https://img.shields.io/badge/skills-206-green.svg)](#skills)
+[![Hooks](https://img.shields.io/badge/hooks-49-orange.svg)](#hooks)
+[![Rules](https://img.shields.io/badge/rules-21-red.svg)](#rules)
 [![Validate](https://github.com/vibeeval/vibecosystem/actions/workflows/validate.yml/badge.svg)](https://github.com/vibeeval/vibecosystem/actions/workflows/validate.yml)
 
 [Turkce](#turkce) | [English](#english) | [Espanol](docs/README_ES.md) | [Francais](docs/README_FR.md) | [Deutsch](docs/README_DE.md) | [Portugues](docs/README_PT.md) | [Italiano](docs/README_IT.md) | [Nederlands](docs/README_NL.md) | [中文](docs/README_ZH.md) | [日本語](docs/README_JA.md) | [한국어](docs/README_KO.md) | [العربية](docs/README_AR.md) | [हिन्दी](docs/README_HI.md) | [Русский](docs/README_RU.md)
@@ -30,9 +30,9 @@ Claude Code is powerful, but it's one assistant. You prompt, it responds, you re
 vibecosystem is a complete [Claude Code](https://docs.anthropic.com/en/docs/claude-code) ecosystem that creates a self-organizing AI team:
 
 1. **119 agents** — specialized roles from frontend-dev to security-analyst
-2. **208 skills** — reusable knowledge from TDD workflows to Kubernetes patterns
-3. **48 hooks** — TypeScript sensors that observe, filter, and inject context
-4. **20 rules** — behavioral guidelines that shape every agent's output
+2. **206 skills** — reusable knowledge from TDD workflows to Kubernetes patterns
+3. **49 hooks** — TypeScript sensors that observe, filter, and inject context
+4. **21 rules** — behavioral guidelines that shape every agent's output
 5. **Self-learning** — every error becomes a rule, automatically
 
 After setup, you say "build a feature" and 20+ agents coordinate across 5 phases.
@@ -158,7 +158,7 @@ Agent error → error-ledger.jsonl → skill-matrix.json
 
 ### Adaptive Hook Loading
 
-48 hooks exist but they don't all run at once. Intent determines which hooks fire.
+49 hooks exist but they don't all run at once. Intent determines which hooks fire.
 
 ![Hooks](assets/gif4-hooks.gif)
 
@@ -174,13 +174,13 @@ Agent error → error-ledger.jsonl → skill-matrix.json
 │                                                         │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐              │
 │  │  Hooks   │  │  Agents  │  │  Skills  │              │
-│  │  (48)    │→ │  (119)   │← │  (202)   │              │
+│  │  (49)    │→ │  (119)   │← │  (206)   │              │
 │  └────┬─────┘  └────┬─────┘  └──────────┘              │
 │       │              │                                   │
 │       ▼              ▼                                   │
 │  ┌──────────┐  ┌──────────┐                              │
 │  │  Rules   │  │  Memory  │                              │
-│  │  (16)    │  │ (PgSQL)  │                              │
+│  │  (21)    │  │ (PgSQL)  │                              │
 │  └──────────┘  └──────────┘                              │
 │                                                         │
 │  ┌──────────────────────────────────────┐                │
@@ -237,9 +237,9 @@ Agent error → error-ledger.jsonl → skill-matrix.json
 | Component | Count | Description |
 |-----------|-------|-------------|
 | `agents/` | 119 | Markdown agent definitions with specialized prompts |
-| `skills/` | 202 | Reusable knowledge — TDD, security, patterns, frameworks |
-| `hooks/src/` | 48 | TypeScript hooks — sensors, learners, validators |
-| `rules/` | 17 | Behavioral guidelines — coding style, safety, QA |
+| `skills/` | 206 | Reusable knowledge — TDD, security, patterns, frameworks |
+| `hooks/src/` | 49 | TypeScript hooks — sensors, learners, validators |
+| `rules/` | 21 | Behavioral guidelines — coding style, safety, QA |
 
 ---
 

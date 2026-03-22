@@ -6,7 +6,7 @@
 
 **Team software IA costruito su Claude Code.**
 
-119 agents. 202 skills. 48 hooks. Zero lavoro manuale.
+119 agents. 206 skills. 49 hooks. Zero lavoro manuale.
 
 <img src="../assets/gif1-numbers.gif" alt="Ecosystem Numbers" width="700">
 
@@ -71,7 +71,7 @@ Phase 5 (Final):        self-learner + technical-writer
 
 ### 3. Caricamento adattivo degli hook
 
-Esistono 48 hook, ma non vengono eseguiti tutti contemporaneamente. L'intento determina quali hook si attivano.
+Esistono 49 hook, ma non vengono eseguiti tutti contemporaneamente. L'intento determina quali hook si attivano.
 
 <img src="../assets/gif4-hooks.gif" alt="Adaptive Hooks" width="700">
 

@@ -46,6 +46,19 @@ Secenekler:
 - "Hangisini tercih edersiniz?" (Seceneksiz)
 - "A mi B mi?" (Artilari/eksileri yok)
 
+## One-Question Rule
+
+Belirsiz durumlarda MAX 1 soru sor. Fazlasi kullaniciyi yorar.
+
+```
+DOGRU:  "Auth icin JWT mi Session mi?" → 1 soru, hemen ilerle
+YANLIS: "Auth tipi?" → "Token suresi?" → "Refresh var mi?" → 3 soru, momentum kaybi
+```
+
+- Guclu tahminin varsa: sormadan direkt ilerle, ne yaptigini acikla
+- Zayif tahmin: 1 soru sor, cevaba gore ilerle
+- Hicbir fikrin yoksa: 1 soru sor + secenekleri artilari/eksileri ile sun
+
 ## Kurallar
 
 - Her secenek icin en az 1 arti ve 1 eksi belirt
@@ -54,6 +67,7 @@ Secenekler:
 - Karar alindiktan sonra HEMEN implement et, tekrar sorma
 - Karari kaydet (memory veya task description'a)
 - Trivial kararlar icin KULLANMA (secenek belliyle sorma)
+- Belirsiz durumlarda MAX 1 soru sor (one-question rule)
 
 ## Agent'lar Icin
 

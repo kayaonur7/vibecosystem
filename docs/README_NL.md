@@ -6,7 +6,7 @@
 
 **AI-softwareteam gebouwd op Claude Code.**
 
-119 agents. 206 skills. 49 hooks. Nul handmatig werk.
+119 agents. 208 skills. 49 hooks. Nul handmatig werk.
 
 <img src="../assets/gif1-numbers.gif" alt="Ecosystem Numbers" width="700">
 

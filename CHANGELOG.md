@@ -4,6 +4,45 @@ All notable changes to vibecosystem will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased]
+
+### Planned
+- Public repo launch
+- Community contribution workflow
+- Skill marketplace
+- Agent performance dashboard
+
+## [1.2.0] - 2026-03-24
+
+### Added
+- 2 new skills: external-skills-catalog (60+ community skill directory), pyxel-patterns (retro game engine)
+- Invisible routing pattern in workflow-router (silent orchestration, decision flowchart)
+- Fallback strategy in workflow-router (workaround, combo, create, external)
+- One-question rule in collaborative-decisions (max 1 clarifying question)
+
+### Fixed
+- a11y-expert.md: added missing YAML frontmatter (CI fix)
+- start-observer.sh: converted CRLF to LF line endings (CI fix)
+
+### Credits
+- Skill Gateway (buraksu42): Invisible routing, external catalog, one-question rule
+- Pyxel (kitao): Retro game engine patterns, pixel art constraints, MML audio
+
+## [1.1.0] - 2026-03-22
+
+### Added
+- 6 new skills: ui-ux-patterns, brand-identity, reverse-document, gate-check, design-system-generator, pentest-methodology
+- 3 new rules: pre-compact-state, incremental-writing, collaborative-decisions
+
+### Enhanced
+- 5 agents enhanced: designer, frontend-dev, accessibility-auditor, technical-writer, security-analyst
+- 4 skills updated: coding-standards, design-to-code, frontend-patterns, security
+
+### Credits
+- Shannon (KeygraphHQ): Result<T,E> pattern, pentest pipeline, comment philosophy
+- UI UX Pro Max (nextlevelbuilder): Named UX rules, UI style catalog, design token architecture
+- Game Studios (Donchitos): Context resilience, incremental writing, gate-check system
+
 ## [1.0.0] - 2026-03-22
 
 ### Added
@@ -31,26 +70,3 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - **Tier 1 (Core):** tdd-workflow, frontend-patterns, backend-patterns, coding-standards, security
 - **Tier 2 (Stack):** django-patterns, postgres-patterns, redis-patterns, kafka-patterns, kubernetes-patterns
 - **Tier 3 (Advanced):** observability, chaos-engineering, event-driven-patterns, rag-patterns, prompt-engineering
-
-## [1.1.0] - 2026-03-22
-
-### Added
-- 6 new skills: ui-ux-patterns, brand-identity, reverse-document, gate-check, design-system-generator, pentest-methodology
-- 3 new rules: pre-compact-state, incremental-writing, collaborative-decisions
-
-### Enhanced
-- 5 agents enhanced: designer, frontend-dev, accessibility-auditor, technical-writer, security-analyst
-- 4 skills updated: coding-standards, design-to-code, frontend-patterns, security
-
-### Credits
-- Shannon (KeygraphHQ): Result<T,E> pattern, pentest pipeline, comment philosophy
-- UI UX Pro Max (nextlevelbuilder): Named UX rules, UI style catalog, design token architecture
-- Game Studios (Donchitos): Context resilience, incremental writing, gate-check system
-
-## [Unreleased]
-
-### Planned
-- Public repo launch
-- Community contribution workflow
-- Skill marketplace
-- Agent performance dashboard

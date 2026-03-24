@@ -6,7 +6,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Agents](https://img.shields.io/badge/agents-119-blue.svg)](#agents)
-[![Skills](https://img.shields.io/badge/skills-208-green.svg)](#skills)
+[![Skills](https://img.shields.io/badge/skills-214-green.svg)](#skills)
 [![Hooks](https://img.shields.io/badge/hooks-49-orange.svg)](#hooks)
 [![Rules](https://img.shields.io/badge/rules-21-red.svg)](#rules)
 [![Validate](https://github.com/vibeeval/vibecosystem/actions/workflows/validate.yml/badge.svg)](https://github.com/vibeeval/vibecosystem/actions/workflows/validate.yml)
@@ -19,7 +19,7 @@
 
 vibecosystem turns Claude Code into a full AI software team — 119 specialized agents that plan, build, review, test, and learn from every mistake. No configuration needed — just install and code.
 
-> **v1.2**: 2 new skills (external skills catalog, Pyxel game engine patterns), invisible routing in workflow-router, one-question rule, CI fixes. See [UPGRADING.md](UPGRADING.md) for details.
+> **v1.3**: 6 new SaaS skills (payment patterns, auth patterns, email infrastructure, KVKK/GDPR compliance, analytics patterns, launch checklist) + 2 enriched skills. See [UPGRADING.md](UPGRADING.md) for details.
 
 ## The Problem
 
@@ -30,7 +30,7 @@ Claude Code is powerful, but it's one assistant. You prompt, it responds, you re
 vibecosystem is a complete [Claude Code](https://docs.anthropic.com/en/docs/claude-code) ecosystem that creates a self-organizing AI team:
 
 1. **119 agents** — specialized roles from frontend-dev to security-analyst
-2. **208 skills** — reusable knowledge from TDD workflows to Kubernetes patterns
+2. **214 skills** — reusable knowledge from TDD workflows to Kubernetes patterns
 3. **49 hooks** — TypeScript sensors that observe, filter, and inject context
 4. **21 rules** — behavioral guidelines that shape every agent's output
 5. **Self-learning** — every error becomes a rule, automatically
@@ -174,7 +174,7 @@ Agent error → error-ledger.jsonl → skill-matrix.json
 │                                                         │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐              │
 │  │  Hooks   │  │  Agents  │  │  Skills  │              │
-│  │  (49)    │→ │  (119)   │← │  (208)   │              │
+│  │  (49)    │→ │  (119)   │← │  (214)   │              │
 │  └────┬─────┘  └────┬─────┘  └──────────┘              │
 │       │              │                                   │
 │       ▼              ▼                                   │
@@ -237,7 +237,7 @@ Agent error → error-ledger.jsonl → skill-matrix.json
 | Component | Count | Description |
 |-----------|-------|-------------|
 | `agents/` | 119 | Markdown agent definitions with specialized prompts |
-| `skills/` | 208 | Reusable knowledge — TDD, security, patterns, frameworks |
+| `skills/` | 214 | Reusable knowledge — TDD, security, patterns, frameworks |
 | `hooks/src/` | 49 | TypeScript hooks — sensors, learners, validators |
 | `rules/` | 21 | Behavioral guidelines — coding style, safety, QA |
 

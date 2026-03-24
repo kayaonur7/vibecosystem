@@ -12,6 +12,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Skill marketplace
 - Agent performance dashboard
 
+## [1.3.0] - 2026-03-24
+
+### Added
+- 6 new SaaS skills: saas-payment-patterns, saas-auth-patterns, email-infrastructure, kvkk-compliance, saas-analytics-patterns, saas-launch-checklist
+
+### Enhanced
+- api-patterns: plan-based authorization, serverless rate limiting, API key auth, usage metering
+- seo-patterns: SaaS landing page anatomy, hero section formulas, pricing page SEO, SoftwareApplication schema
+
 ## [1.2.0] - 2026-03-24
 
 ### Added

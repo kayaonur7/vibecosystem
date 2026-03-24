@@ -50,6 +50,20 @@ These are user data, never touch:
 
 ## Version History
 
+### v1.3.0 (2026-03-24)
+
+**New Skills (6):**
+- `saas-payment-patterns` - Payment provider abstraction, webhook security, subscription lifecycle, dunning, pricing models
+- `saas-auth-patterns` - Auth strategy matrix, multi-tenant auth, RBAC, API keys, MFA, session management
+- `email-infrastructure` - SPF/DKIM/DMARC, subdomain strategy, provider abstraction, bounce handling, warmup
+- `kvkk-compliance` - KVKK/GDPR comparison, consent management, right to erasure, data breach flow, audit logging
+- `saas-analytics-patterns` - Event taxonomy, SaaS metrics (MRR/ARR/churn), funnel tracking, privacy-respecting analytics
+- `saas-launch-checklist` - 28-item pre-launch checklist, day-1 monitoring, rollback plan, incident response skeleton
+
+**Enhanced Skills (2):**
+- `api-patterns` - Plan-based authorization, serverless rate limiting, API key authentication, usage metering
+- `seo-patterns` - SaaS landing page anatomy, hero section formulas, pricing page SEO, SoftwareApplication schema
+
 ### v1.2.0 (2026-03-24)
 
 **New Skills (2):**

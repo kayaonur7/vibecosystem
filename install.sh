@@ -36,12 +36,17 @@ echo "  - 49 hooks    -> ~/.claude/hooks/"
 echo "  - 21 rules    -> ~/.claude/rules/"
 echo ""
 if [ "$FORCE" = true ]; then
-  echo "Mode: OVERWRITE (--force) — existing files will be replaced"
+  echo "WARNING: OVERWRITE mode (--force) — existing files will be replaced!"
+  echo "A backup will be created before overwriting."
 else
   echo "Mode: MERGE (default) — existing files will be preserved"
 fi
 echo ""
-read -p "Continue? (y/N) " -n 1 -r
+if [ "$FORCE" = true ]; then
+  read -p "This will overwrite your customized files. Are you sure? (y/N) " -n 1 -r
+else
+  read -p "Continue? (y/N) " -n 1 -r
+fi
 echo
 [[ $REPLY =~ ^[Yy]$ ]] || exit 0
 
@@ -117,8 +122,8 @@ for f in "$REPO_DIR/hooks/src/shared/"*.ts; do
   name=$(basename "$f")
   smart_copy_file "$f" "$CLAUDE_DIR/hooks/src/shared/$name"
 done
-cp "$REPO_DIR/hooks/package.json" "$CLAUDE_DIR/hooks/package.json"
-cp "$REPO_DIR/hooks/tsconfig.json" "$CLAUDE_DIR/hooks/tsconfig.json"
+smart_copy_file "$REPO_DIR/hooks/package.json" "$CLAUDE_DIR/hooks/package.json"
+smart_copy_file "$REPO_DIR/hooks/tsconfig.json" "$CLAUDE_DIR/hooks/tsconfig.json"
 HOOK_COUNT=$(ls "$CLAUDE_DIR/hooks/dist/"*.mjs 2>/dev/null | wc -l | tr -d ' ')
 
 # Rules

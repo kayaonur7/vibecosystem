@@ -72,6 +72,37 @@ jobs:
           additional_files: 'install.sh'
           severity: warning
 
+  validate-hooks:
+    name: Validate Hooks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        working-directory: hooks
+        run: npm ci
+
+      - name: Audit dependencies
+        working-directory: hooks
+        run: npm audit --omit=dev
+
+      - name: Build hooks and verify dist is up-to-date
+        working-directory: hooks
+        run: |
+          npm run build
+          if ! git diff --quiet dist/; then
+            echo "ERROR: hooks/dist/ is out of sync with hooks/src/"
+            echo "Run 'cd hooks && npm run build' and commit the result"
+            git diff --stat dist/
+            exit 1
+          fi
+          echo "hooks/dist/ is up-to-date with source"
+
   markdown-lint:
     name: Markdown Lint
     runs-on: ubuntu-latest

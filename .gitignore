@@ -1,4 +1,5 @@
 node_modules/
+.claude/
 # dist/ — pre-built hooks are included for zero-dependency install
 *.db
 *.sqlite

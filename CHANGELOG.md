@@ -12,6 +12,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Skill marketplace
 - Agent performance dashboard
 
+## [1.4.0] - 2026-03-25
+
+### Added
+- 2 new agents: browser-agent (AI browser automation + stealth toolkit), harvest (web intelligence gatherer)
+- 9 new skills: browser-automation, harvest-single, harvest-deep-crawl, harvest-structured, harvest-adaptive, harvest-monitor, harvest-competitive, config-security-scan, experiment-loop
+- Docker crawl4ai integration (docker/crawl4ai/docker-compose.yml)
+- MCP integration guide (docs/mcp-integrations.md) for browser-use, codebase-memory-mcp, crawl4ai
+- Stealth browser toolkit in browser-agent (Patchright, Nodriver, Camoufox, curl-impersonate)
+- Advanced extraction toolkit in harvest (Katana, yt-dlp, gallery-dl, twscrape)
+
+### Enhanced
+- security-reviewer: hard exclusion list (reduce false positives), diff-aware review mode, confidence calibration
+- maestro: dynamic manager delegation, validation gate pattern, loop detection + step budgets, event-driven flow routing
+- qa-loop: event-driven conditional routing, output validation, auto-retry with error feedback (ModelRetry)
+- agent-assignment-matrix: 7 new task categories for browser automation, web crawling, config security, performance loops
+
+### Fixed
+- README Turkce section agent count (119 -> 121)
+- Docker compose deprecated version field removed
+- browser-agent MCP tool list consistency across files
+
 ## [1.3.0] - 2026-03-24
 
 ### Added

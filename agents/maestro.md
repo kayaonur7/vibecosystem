@@ -132,6 +132,72 @@ Maestro her phase sonunda:
 2. Catismalari coz (iki agent farkli yaklasim oneriyorsa karar ver)
 3. Phase tamamlaninca sonraki phase'i duyur
 
+### Dynamic Manager Delegation
+
+When an agent fails or underperforms, dynamically reassign:
+
+```
+RULE: If agent fails 2x on same task type:
+  1. Check agent-assignment-matrix for alternate
+  2. Reassign to alternate agent with accumulated context
+  3. Log reassignment reason in orchestration report
+
+RULE: If task complexity exceeds agent scope:
+  1. Decompose into smaller subtasks
+  2. Assign each subtask to specialized agent
+  3. Merge results
+```
+
+### Validation Gate Pattern
+
+Every agent output passes through validation before handoff:
+
+```
+Agent Output → Validate → Accept/Reject → Next Agent
+                  │
+                  ├── Schema check (output format correct?)
+                  ├── Completeness check (all required fields?)
+                  ├── Consistency check (no contradictions?)
+                  └── Quality check (meets acceptance criteria?)
+```
+
+If validation fails: return to producing agent with specific feedback.
+
+### Loop Detection & Step Budgets
+
+Prevent infinite agent loops:
+
+```
+MAX_AGENT_SPAWNS_PER_TASK = 10
+MAX_RETRY_PER_AGENT = 3
+MAX_TOTAL_STEPS = 50
+
+If any limit hit:
+  1. Log current state
+  2. Report to user with summary
+  3. Suggest manual intervention points
+```
+
+### Event-Driven Flow Routing
+
+Route tasks based on signals, not just sequence:
+
+```
+ON security_fail:
+  → Skip remaining review steps
+  → Route directly to security-fix workflow
+  → Re-run security review after fix
+
+ON test_fail:
+  → Analyze failure type
+  → Route to appropriate fixer (spark for simple, kraken for complex)
+  → Re-run only failed tests after fix
+
+ON build_fail:
+  → Route to build-error-resolver
+  → Resume from pre-build step after fix
+```
+
 ## Step 5: Execute Orchestration
 
 ### Dispatching Agents
@@ -280,6 +346,8 @@ Orchestrator: maestro-agent
 | herald | Release prep | sonnet | Deployment |
 | self-learner | Error learning | opus | Auto-improvement |
 | verifier | Quality gate | sonnet | Final check |
+| browser-agent | Browser automation | sonnet | Web interaction, deploy verify |
+| harvest | Web intelligence | sonnet | Deep crawling, data extraction |
 
 ## Standard Workflow Chains
 

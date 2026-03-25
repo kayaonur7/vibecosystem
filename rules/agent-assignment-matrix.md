@@ -81,6 +81,10 @@ Hangi is hangi agent'a gider. Maestro ve /swarm bu tabloyu referans alir.
 | ML/Data pipeline | neuron | ai-engineer | code-reviewer |
 | Mobile cross-platform | spectre | frontend-dev | code-reviewer |
 | DB optimization | vault | database-reviewer | code-reviewer |
+| Browser otomasyon | browser-agent | e2e-runner | verifier |
+| Web crawling/scraping | harvest | oracle | code-reviewer |
+| Config security audit | security-reviewer | config-validator | verifier |
+| Performance optimization loop | nitro + experiment-loop | profiler | verifier |
 
 ## Arastirma & Analiz Assignment
 
@@ -88,6 +92,9 @@ Hangi is hangi agent'a gider. Maestro ve /swarm bu tabloyu referans alir.
 |----------------|-----------|-------|
 | Codebase kesfetme | scout | Explore agent |
 | Dis arastirma (web/docs) | oracle | WebSearch |
+| Derin web crawling | harvest | oracle |
+| Rekabet analizi | harvest | growth |
+| Dokumantasyon crawl | harvest | oracle |
 | Bug investigation | sleuth | scout |
 | Mimari karar | architect | planner |
 | Sprint planlama | project-manager | planner |
@@ -177,17 +184,18 @@ Task 3 kez QA'den gecemezse:
 ## Swarm Phase → Agent Mapping
 
 ```
-Phase 1 (Kesif):       scout + project-manager + architect
+Phase 1 (Kesif):       scout + project-manager + architect + harvest (dis arastirma)
                         (+ tech-lead, tech-radar gerekirse)
 Phase 2 (Gelistirme):  backend-dev + frontend-dev + designer + devops
-                        (+ ai-engineer, kraken gerekirse)
+                        (+ ai-engineer, kraken, browser-agent gerekirse)
                         Specialist havuzu (task'a gore): azure-expert, gcp-expert,
                         graphql-expert, websocket-expert, redis-expert, kafka-expert,
                         ddd-expert, cqrs-expert, event-sourcing-expert, i18n-expert,
                         seo-specialist, web-perf-expert, micro-frontend-expert,
-                        nexus, spectre, babel, neuron, vault, nitro
+                        nexus, spectre, babel, neuron, vault, nitro, harvest
 Phase 3 (Review):      code-reviewer + security-reviewer + qa-engineer + data-analyst
                         (+ compliance-expert, accessibility-auditor gerekirse)
+                        (+ browser-agent deploy dogrulama gerekirse)
 Phase 4 (Duzeltme):    spark/kraken + tdd-guide + verifier
 Phase 5 (Final):       self-learner + technical-writer + growth
                         (+ session-replay-analyzer, reputation-engine)

@@ -85,6 +85,69 @@ Maestro `/swarm` calistirdiginda bu donguyu otomatik uygular:
 - Phase 3 (Review) tum task'lar QA'den gectikten sonra baslar
 - Phase gecislerinde quality gate kontrol edilir
 
+## Event-Driven Conditional Routing
+
+QA sonucuna gore otomatik yonlendirme:
+
+```
+QA Result → Route Decision:
+
+SECURITY_FAIL:
+  → Bypass normal retry
+  → Route to security-reviewer + spark (minimal fix)
+  → Re-run ONLY security check
+  → Normal QA'ye donme
+
+BUILD_FAIL:
+  → Route to build-error-resolver
+  → Re-run ONLY build check
+  → Build PASS ise normal QA'ye don
+
+TYPE_FAIL:
+  → Route to build-error-resolver (type fix mode)
+  → Re-run ONLY type check
+
+TEST_FAIL:
+  → Analyze: flaky mi, logic error mi?
+  → Flaky: retry once, sonra @replay
+  → Logic: normal retry with feedback
+
+STYLE_FAIL:
+  → Auto-fix (prettier/eslint --fix)
+  → Re-run ONLY style check
+  → Sayilmaz retry olarak
+```
+
+## Output Validation
+
+Her agent ciktisi kabul edilmeden once:
+
+| Check | Ne Kontrol Eder |
+|-------|----------------|
+| Format | Beklenen output yapisi dogru mu? |
+| Completeness | Tum gerekli alanlar var mi? |
+| Consistency | Onceki adimlarla celisiyor mu? |
+| Scope | Agent scope disina cikti mi? |
+
+Validation basarisiz → agent'a spesifik feedback, yeniden dene.
+
+## Auto-Retry Pattern (ModelRetry)
+
+Agent tool call basarisiz oldugunda:
+
+```
+Attempt 1: Normal calistir
+  FAIL → Parse error message
+  → Inject error as feedback to agent
+Attempt 2: Agent hata bilgisiyle yeniden dener
+  FAIL → Parse + accumulate errors
+  → Inject accumulated feedback
+Attempt 3: Son deneme
+  FAIL → Escalate to alternate agent or user
+```
+
+Bu pattern her agent tool call'unda uygulanir. Blind retry YAPMA, her seferinde hata bilgisini geri besle.
+
 ## Metrikler (Comms Uzerinden Takip)
 
 - Task first-pass QA orani (ilk denemede gecen)

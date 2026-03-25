@@ -50,6 +50,45 @@ These are user data, never touch:
 
 ## Version History
 
+### v1.4.0 (2026-03-25)
+
+**New Agents (2):**
+- `browser-agent` - AI browser automation via browser-use MCP: navigate, interact, extract, verify deploys, stealth toolkit (Patchright, Nodriver, Camoufox)
+- `harvest` - Web intelligence gatherer: deep crawling, structured extraction, competitive analysis, social scraping toolkit (Katana, yt-dlp, gallery-dl)
+
+**New Skills (9):**
+- `browser-automation` - browser-use MCP integration for web interaction
+- `harvest-single` - Single page smart extraction (`/harvest`)
+- `harvest-deep-crawl` - Multi-page deep crawling (`/crawl`)
+- `harvest-structured` - Structured data extraction with schemas (`/scrape`)
+- `harvest-adaptive` - Adaptive content summarization (`/digest`)
+- `harvest-monitor` - Web change monitoring and diff tracking
+- `harvest-competitive` - Competitive intelligence gathering
+- `config-security-scan` - Security scan for .claude/ configs (AgentShield pattern)
+- `experiment-loop` - Autonomous optimization loop: modify, measure, keep/discard
+
+**Enhanced Agents (2):**
+- `security-reviewer` - Hard exclusion list (reduce false positives), diff-aware review mode (5-10x faster), confidence calibration
+- `maestro` - Dynamic manager delegation, validation gate pattern, loop detection with step budgets, event-driven flow routing
+
+**Enhanced Rules (2):**
+- `qa-loop` - Event-driven conditional routing, output validation, auto-retry with error feedback (ModelRetry pattern)
+- `agent-assignment-matrix` - New agent rows for browser automation, web crawling, config security, performance optimization loops
+
+**New Infrastructure:**
+- `docker/crawl4ai/docker-compose.yml` - crawl4ai web crawler (port 11235)
+- `docs/mcp-integrations.md` - MCP server integration guide (browser-use, codebase-memory-mcp, crawl4ai)
+
+**Inspired by:**
+- [browser-use](https://github.com/browser-use/browser-use) (78K stars) - AI browser automation MCP
+- [codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp) (780+ stars) - Persistent code knowledge graph
+- [crawl4ai](https://github.com/unclecode/crawl4ai) (50K stars) - Deep web crawling + LLM extraction
+- [everything-claude-code](https://github.com/affaan-m/everything-claude-code) (50K stars) - AgentShield config scanner pattern
+- [claude-code-security-review](https://github.com/anthropics/claude-code-security-review) - Hard exclusion list, diff-aware review
+- [crewAI](https://github.com/crewAIInc/crewAI) (45.9K stars) - Dynamic delegation, event-driven flow
+- [pydantic-ai](https://github.com/pydantic/pydantic-ai) (15.7K stars) - ModelRetry, structured output validation
+- [karpathy/autoresearch](https://github.com/karpathy/autoresearch) (42K stars) - Autonomous experiment loop
+
 ### v1.3.0 (2026-03-24)
 
 **New Skills (6):**

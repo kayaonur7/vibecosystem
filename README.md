@@ -5,8 +5,8 @@
 **Your AI software team. Built on Claude Code.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Agents](https://img.shields.io/badge/agents-119-blue.svg)](#agents)
-[![Skills](https://img.shields.io/badge/skills-214-green.svg)](#skills)
+[![Agents](https://img.shields.io/badge/agents-121-blue.svg)](#agents)
+[![Skills](https://img.shields.io/badge/skills-223-green.svg)](#skills)
 [![Hooks](https://img.shields.io/badge/hooks-49-orange.svg)](#hooks)
 [![Rules](https://img.shields.io/badge/rules-21-red.svg)](#rules)
 [![Validate](https://github.com/vibeeval/vibecosystem/actions/workflows/validate.yml/badge.svg)](https://github.com/vibeeval/vibecosystem/actions/workflows/validate.yml)
@@ -17,9 +17,9 @@
 
 </div>
 
-vibecosystem turns Claude Code into a full AI software team — 119 specialized agents that plan, build, review, test, and learn from every mistake. No configuration needed — just install and code.
+vibecosystem turns Claude Code into a full AI software team — 121 specialized agents that plan, build, review, test, and learn from every mistake. No configuration needed — just install and code.
 
-> **v1.3**: 6 new SaaS skills (payment patterns, auth patterns, email infrastructure, KVKK/GDPR compliance, analytics patterns, launch checklist) + 2 enriched skills. See [UPGRADING.md](UPGRADING.md) for details.
+> **v1.4**: 2 new agents (browser-agent, harvest) + 9 new skills + 3 MCP integrations (browser-use, codebase-memory, crawl4ai) + security-reviewer hard exclusions + experiment loop. See [UPGRADING.md](UPGRADING.md) for details.
 
 ## The Problem
 
@@ -29,8 +29,8 @@ Claude Code is powerful, but it's one assistant. You prompt, it responds, you re
 
 vibecosystem is a complete [Claude Code](https://docs.anthropic.com/en/docs/claude-code) ecosystem that creates a self-organizing AI team:
 
-1. **119 agents** — specialized roles from frontend-dev to security-analyst
-2. **214 skills** — reusable knowledge from TDD workflows to Kubernetes patterns
+1. **121 agents** — specialized roles from frontend-dev to security-analyst
+2. **223 skills** — reusable knowledge from TDD workflows to Kubernetes patterns
 3. **49 hooks** — TypeScript sensors that observe, filter, and inject context
 4. **21 rules** — behavioral guidelines that shape every agent's output
 5. **Self-learning** — every error becomes a rule, automatically
@@ -174,7 +174,7 @@ Agent error → error-ledger.jsonl → skill-matrix.json
 │                                                         │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐              │
 │  │  Hooks   │  │  Agents  │  │  Skills  │              │
-│  │  (49)    │→ │  (119)   │← │  (214)   │              │
+│  │  (49)    │→ │  (121)   │← │  (223)   │              │
 │  └────┬─────┘  └────┬─────┘  └──────────┘              │
 │       │              │                                   │
 │       ▼              ▼                                   │
@@ -219,7 +219,7 @@ Agent error → error-ledger.jsonl → skill-matrix.json
 
 | Feature | vibecosystem | Single Claude Code | Cursor | aider |
 |---------|:----------:|:------------------:|:------:|:-----:|
-| Specialized agents | **119** | 0 | 0 | 0 |
+| Specialized agents | **121** | 0 | 0 | 0 |
 | Self-learning | **Yes** | No | No | No |
 | Agent swarm coordination | **Yes** | No | No | No |
 | Cross-project learning | **Yes** | No | No | No |
@@ -236,8 +236,8 @@ Agent error → error-ledger.jsonl → skill-matrix.json
 
 | Component | Count | Description |
 |-----------|-------|-------------|
-| `agents/` | 119 | Markdown agent definitions with specialized prompts |
-| `skills/` | 214 | Reusable knowledge — TDD, security, patterns, frameworks |
+| `agents/` | 121 | Markdown agent definitions with specialized prompts |
+| `skills/` | 223 | Reusable knowledge — TDD, security, patterns, frameworks |
 | `hooks/src/` | 49 | TypeScript hooks — sensors, learners, validators |
 | `rules/` | 21 | Behavioral guidelines — coding style, safety, QA |
 
@@ -309,7 +309,7 @@ Contributions welcome! Areas where help is needed:
 
 ### Nedir?
 
-vibecosystem, Claude Code'u tam bir AI yazilim ekibine donusturur. Tek bir asistan degil — planlayan, gelistiren, review yapan, test eden ve her hatasindan ogrenen **119 uzman agent'lik bir ekip**.
+vibecosystem, Claude Code'u tam bir AI yazilim ekibine donusturur. Tek bir asistan degil — planlayan, gelistiren, review yapan, test eden ve her hatasindan ogrenen **121 uzman agent'lik bir ekip**.
 
 Ozel model yok. Ozel API yok. Sadece Claude Code'un hook + agent + rules sistemi, sonuna kadar kullanilmis.
 

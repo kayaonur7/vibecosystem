@@ -50,6 +50,51 @@ These are user data, never touch:
 
 ## Version History
 
+### v2.0.0 (2026-03-26)
+
+**Upgrading to v2.0**
+
+**New Files** - Run the installer again or manually copy:
+
+```bash
+# Re-run installer (recommended)
+cd vibecosystem && git pull && ./install.sh
+
+# Or manually:
+# 13 new agents
+cp agents/{sast-scanner,mutation-tester,graph-analyst,mcp-manager,community-manager,benchmark,dependency-auditor,api-designer,incident-responder,data-modeler,test-architect,release-engineer,documentation-architect}.md ~/.claude/agents/
+
+# 23 new skills
+for skill in sast-patterns github-actions-integration mutation-testing code-knowledge-graph github-mcp browser-debugging n8n-workflows understand-codebase mcp-registry changelog-automation soc2-compliance gdpr-compliance hipaa-compliance prd-writer user-story-generator content-strategy cto-advisor vp-engineering product-analytics marketing-analytics developer-relations growth-engineering competitive-analysis; do
+  cp -r skills/$skill ~/.claude/skills/
+done
+
+# 4 new hooks
+cp hooks/{sast-on-edit,dashboard-ws-emitter,mcp-discovery,changelog-on-release}.ts ~/.claude/hooks/src/
+
+# Dashboard (optional)
+cp -r tools/dashboard ~/.claude/tools/
+cd ~/.claude/tools/dashboard && npm install
+
+# GitHub Actions (optional - copy to your project)
+cp .github/workflows/claude-{review,fix}.yml YOUR_PROJECT/.github/workflows/
+```
+
+**Dashboard Setup:**
+```bash
+cd ~/.claude/tools/dashboard
+npm install
+npm start
+# Open http://localhost:3848
+```
+
+**Hook Compilation** - After copying new hooks, rebuild:
+```bash
+cd ~/.claude/hooks && npm run build
+```
+
+**Breaking Changes:** None. v2.0 is fully backward compatible with v1.4.
+
 ### v1.4.0 (2026-03-25)
 
 **New Agents (2):**

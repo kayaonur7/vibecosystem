@@ -5,9 +5,9 @@
 **Your AI software team. Built on Claude Code.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Agents](https://img.shields.io/badge/agents-121-blue.svg)](#agents)
-[![Skills](https://img.shields.io/badge/skills-223-green.svg)](#skills)
-[![Hooks](https://img.shields.io/badge/hooks-49-orange.svg)](#hooks)
+[![Agents](https://img.shields.io/badge/agents-134-blue.svg)](#agents)
+[![Skills](https://img.shields.io/badge/skills-246-green.svg)](#skills)
+[![Hooks](https://img.shields.io/badge/hooks-53-orange.svg)](#hooks)
 [![Rules](https://img.shields.io/badge/rules-21-red.svg)](#rules)
 [![Validate](https://github.com/vibeeval/vibecosystem/actions/workflows/validate.yml/badge.svg)](https://github.com/vibeeval/vibecosystem/actions/workflows/validate.yml)
 
@@ -17,9 +17,9 @@
 
 </div>
 
-vibecosystem turns Claude Code into a full AI software team — 121 specialized agents that plan, build, review, test, and learn from every mistake. No configuration needed — just install and code.
+vibecosystem turns Claude Code into a full AI software team — 134 specialized agents that plan, build, review, test, and learn from every mistake. No configuration needed — just install and code.
 
-> **v1.4**: 2 new agents (browser-agent, harvest) + 9 new skills + 3 MCP integrations (browser-use, codebase-memory, crawl4ai) + security-reviewer hard exclusions + experiment loop. See [UPGRADING.md](UPGRADING.md) for details.
+> **v2.0**: 13 new agents (sast-scanner, mutation-tester, graph-analyst, mcp-manager, community-manager, benchmark, dependency-auditor, api-designer, incident-responder, data-modeler, test-architect, release-engineer, documentation-architect) + 23 new skills (SAST, compliance, product, marketing, MCP) + 4 new hooks + Agent Monitoring Dashboard + GitHub Actions CI/CD + MCP Auto-Discovery. See [UPGRADING.md](UPGRADING.md) for details.
 
 ## The Problem
 
@@ -29,9 +29,9 @@ Claude Code is powerful, but it's one assistant. You prompt, it responds, you re
 
 vibecosystem is a complete [Claude Code](https://docs.anthropic.com/en/docs/claude-code) ecosystem that creates a self-organizing AI team:
 
-1. **121 agents** — specialized roles from frontend-dev to security-analyst
-2. **223 skills** — reusable knowledge from TDD workflows to Kubernetes patterns
-3. **49 hooks** — TypeScript sensors that observe, filter, and inject context
+1. **134 agents** — specialized roles from frontend-dev to security-analyst
+2. **246 skills** — reusable knowledge from TDD workflows to Kubernetes patterns
+3. **53 hooks** — TypeScript sensors that observe, filter, and inject context
 4. **21 rules** — behavioral guidelines that shape every agent's output
 5. **Self-learning** — every error becomes a rule, automatically
 
@@ -91,6 +91,20 @@ Error happens → passive-learner captures pattern (+ project tag)
 ```
 
 No manual intervention. The system writes its own rules — and shares them across projects.
+
+## What's New in v2.0
+
+- **SAST Security Scanner** — static analysis agent + hook for automated vulnerability detection
+- **Agent Monitoring Dashboard** — real-time web UI for agent activity and performance
+- **MCP Auto-Discovery** — automatic MCP server recommendations based on project type
+- **Changelog Automation** — automatic changelog generation at session end
+- **Compliance Skills** — SOC2, GDPR, HIPAA compliance checking
+- **Product & Marketing Skills** — PRD writer, analytics setup, growth playbooks
+- **GitHub Actions CI/CD** — automated PR review + issue fix workflows
+- **Mutation Testing** — test quality measurement via mutation analysis
+- **Code Knowledge Graph** — codebase structure analysis with graph-analyst
+
+---
 
 ## Core Features
 
@@ -158,7 +172,7 @@ Agent error → error-ledger.jsonl → skill-matrix.json
 
 ### Adaptive Hook Loading
 
-49 hooks exist but they don't all run at once. Intent determines which hooks fire.
+53 hooks exist but they don't all run at once. Intent determines which hooks fire.
 
 ![Hooks](assets/gif4-hooks.gif)
 
@@ -174,7 +188,7 @@ Agent error → error-ledger.jsonl → skill-matrix.json
 │                                                         │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐              │
 │  │  Hooks   │  │  Agents  │  │  Skills  │              │
-│  │  (49)    │→ │  (121)   │← │  (223)   │              │
+│  │  (53)    │→ │  (134)   │← │  (246)   │              │
 │  └────┬─────┘  └────┬─────┘  └──────────┘              │
 │       │              │                                   │
 │       ▼              ▼                                   │
@@ -219,7 +233,7 @@ Agent error → error-ledger.jsonl → skill-matrix.json
 
 | Feature | vibecosystem | Single Claude Code | Cursor | aider |
 |---------|:----------:|:------------------:|:------:|:-----:|
-| Specialized agents | **121** | 0 | 0 | 0 |
+| Specialized agents | **134** | 0 | 0 | 0 |
 | Self-learning | **Yes** | No | No | No |
 | Agent swarm coordination | **Yes** | No | No | No |
 | Cross-project learning | **Yes** | No | No | No |
@@ -236,9 +250,9 @@ Agent error → error-ledger.jsonl → skill-matrix.json
 
 | Component | Count | Description |
 |-----------|-------|-------------|
-| `agents/` | 121 | Markdown agent definitions with specialized prompts |
-| `skills/` | 223 | Reusable knowledge — TDD, security, patterns, frameworks |
-| `hooks/src/` | 49 | TypeScript hooks — sensors, learners, validators |
+| `agents/` | 134 | Markdown agent definitions with specialized prompts |
+| `skills/` | 246 | Reusable knowledge — TDD, security, patterns, frameworks |
+| `hooks/src/` | 53 | TypeScript hooks — sensors, learners, validators |
 | `rules/` | 21 | Behavioral guidelines — coding style, safety, QA |
 
 ---
@@ -309,7 +323,7 @@ Contributions welcome! Areas where help is needed:
 
 ### Nedir?
 
-vibecosystem, Claude Code'u tam bir AI yazilim ekibine donusturur. Tek bir asistan degil — planlayan, gelistiren, review yapan, test eden ve her hatasindan ogrenen **121 uzman agent'lik bir ekip**.
+vibecosystem, Claude Code'u tam bir AI yazilim ekibine donusturur. Tek bir asistan degil — planlayan, gelistiren, review yapan, test eden ve her hatasindan ogrenen **134 uzman agent'lik bir ekip**.
 
 Ozel model yok. Ozel API yok. Sadece Claude Code'un hook + agent + rules sistemi, sonuna kadar kullanilmis.
 

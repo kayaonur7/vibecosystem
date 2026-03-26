@@ -30,9 +30,9 @@ echo "vibecosystem installer"
 echo "======================"
 echo ""
 echo "This will install into ~/.claude/:"
-echo "  - 121 agents  -> ~/.claude/agents/"
-echo "  - 223 skills  -> ~/.claude/skills/"
-echo "  - 49 hooks    -> ~/.claude/hooks/"
+echo "  - 134 agents  -> ~/.claude/agents/"
+echo "  - 246 skills  -> ~/.claude/skills/"
+echo "  - 53 hooks    -> ~/.claude/hooks/"
 echo "  - 21 rules    -> ~/.claude/rules/"
 echo ""
 if [ "$FORCE" = true ]; then
@@ -128,6 +128,36 @@ for f in "$REPO_DIR/rules/"*.md; do
   name=$(basename "$f")
   smart_copy_file "$f" "$CLAUDE_DIR/rules/$name"
 done
+
+# Tools (dashboard etc.)
+echo "Installing tools..."
+mkdir -p "$CLAUDE_DIR/tools/dashboard"
+for f in "$REPO_DIR/tools/dashboard/"*; do
+  [ -f "$f" ] || continue
+  name=$(basename "$f")
+  smart_copy_file "$f" "$CLAUDE_DIR/tools/dashboard/$name"
+done
+
+# Scripts (MCP etc.)
+echo "Installing scripts/mcp..."
+mkdir -p "$CLAUDE_DIR/scripts/mcp"
+for f in "$REPO_DIR/scripts/mcp/"*; do
+  [ -f "$f" ] || continue
+  name=$(basename "$f")
+  smart_copy_file "$f" "$CLAUDE_DIR/scripts/mcp/$name"
+done
+
+# GitHub Workflows (templates - copy to your project's .github/workflows/ manually)
+if [ -d "$REPO_DIR/.github/workflows" ]; then
+  echo "Installing GitHub workflow templates..."
+  mkdir -p "$CLAUDE_DIR/.github/workflows"
+  for f in "$REPO_DIR/.github/workflows/"claude-*.yml; do
+    [ -f "$f" ] || continue
+    name=$(basename "$f")
+    smart_copy_file "$f" "$CLAUDE_DIR/.github/workflows/$name"
+  done
+  echo "  Note: Copy claude-*.yml to your project's .github/workflows/ to activate"
+fi
 
 echo ""
 echo "Installation complete!"

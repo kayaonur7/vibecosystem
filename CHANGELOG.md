@@ -12,6 +12,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Skill marketplace
 - Agent performance dashboard
 
+## [2.0.0] - 2026-03-26
+
+### Added
+- **13 new agents**: sast-scanner, mutation-tester, graph-analyst, mcp-manager, community-manager, benchmark, dependency-auditor, api-designer, incident-responder, data-modeler, test-architect, release-engineer, documentation-architect
+- **23 new skills**: sast-patterns, github-actions-integration, mutation-testing, code-knowledge-graph, github-mcp, browser-debugging, n8n-workflows, understand-codebase, mcp-registry, changelog-automation, soc2-compliance, gdpr-compliance, hipaa-compliance, prd-writer, user-story-generator, content-strategy, cto-advisor, vp-engineering, product-analytics, marketing-analytics, developer-relations, growth-engineering, competitive-analysis
+- **4 new hooks**: sast-on-edit (SAST security scan on edit), dashboard-ws-emitter (real-time agent monitoring), mcp-discovery (auto-suggest MCP servers), changelog-on-release (session changelog summary)
+- **Agent Monitoring Dashboard**: Real-time web UI at localhost:3848 with agent timeline, live feed, Canavar error ledger, and agent breakdown stats
+- **GitHub Actions CI/CD**: Automatic PR review (claude-review.yml) and issue-to-fix (claude-fix.yml) workflows using anthropics/claude-code-action
+- **MCP Registry**: Python registry script with 12 known MCP servers and project-based recommendations
+- **Compliance suite**: SOC2, GDPR, HIPAA compliance skills with checklists, code patterns, and audit guides
+- **Product & Marketing skills**: PRD writer, user story generator, product analytics, marketing analytics, growth engineering, competitive analysis, content strategy, CTO advisor, VP engineering perspectives
+- **Mutation testing**: Test suite quality measurement with Stryker/mutmut/go-mutesting support
+
+### Changed
+- Agent count: 121 -> 134
+- Skill count: 223 -> 246
+- Hook count: 49 -> 53
+
 ## [1.4.0] - 2026-03-25
 
 ### Added

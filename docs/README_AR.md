@@ -4,21 +4,21 @@
 
 **فريق برمجيات ذكاء اصطناعي مبني على Claude Code.**
 
-121 Agent. 223 skill. 49 hook. بدون أي عمل يدوي.
+134 Agent. 246 skill. 53 hook. بدون أي عمل يدوي.
 
 ## نظرة سريعة
 
 | المقياس | العدد |
 |--------|-------|
-| Agents | **121** |
-| Skills | **223** |
-| Hooks | **49** |
+| Agents | **134** |
+| Skills | **246** |
+| Hooks | **53** |
 | Rules | **21** |
 | العمل اليدوي | **0** |
 
 ## ما هذا؟
 
-يحول vibecosystem أداة Claude Code إلى فريق برمجيات ذكاء اصطناعي متكامل. ليس مساعدا واحدا، بل **فريق** من 121 agent متخصصا يخطط ويبني ويراجع ويختبر ويتعلم من كل خطأ.
+يحول vibecosystem أداة Claude Code إلى فريق برمجيات ذكاء اصطناعي متكامل. ليس مساعدا واحدا، بل **فريق** من 134 agent متخصصا يخطط ويبني ويراجع ويختبر ويتعلم من كل خطأ.
 
 لا نموذج مخصص. لا واجهة برمجة مخصصة. فقط نظام hook + agent + rules في Claude Code، مستغل حتى أقصى حد.
 
@@ -59,7 +59,7 @@ Phase 5 (Final):        self-learner + technical-writer
 
 ### 3. التحميل التكيفي للـ Hook
 
-يوجد 49 hook لكنها لا تعمل جميعها في آن واحد. نية المستخدم هي التي تحدد أي hook يتم تشغيله.
+يوجد 53 hook لكنها لا تعمل جميعها في آن واحد. نية المستخدم هي التي تحدد أي hook يتم تشغيله.
 
 <img src="../assets/gif4-hooks.gif" alt="Adaptive Hooks" width="700">
 
@@ -110,7 +110,7 @@ Bug reproduction → replay          (backup: sleuth)
 │                                                         │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐              │
 │  │  Hooks   │  │  Agents  │  │  Skills  │              │
-│  │  (49)    │→ │  (121)   │← │  (223)   │              │
+│  │  (53)    │→ │  (134)   │← │  (246)   │              │
 │  └────┬─────┘  └────┬─────┘  └──────────┘              │
 │       │              │                                   │
 │       ▼              ▼                                   │
@@ -135,13 +135,13 @@ Bug reproduction → replay          (backup: sleuth)
 
 | الفئة | العدد | أمثلة |
 |----------|-------|---------|
-| Core Dev | 12 | frontend-dev, backend-dev, kraken, spark, devops |
+| Core Dev | 13 | frontend-dev, backend-dev, kraken, spark, devops |
 | Review & QA | 8 | code-reviewer, security-reviewer, verifier, qa-engineer |
 | Domain Experts | 35 | graphql-expert, kubernetes-expert, ddd-expert, redis-expert |
 | Architecture | 8 | architect, planner, clean-arch-expert, cqrs-expert |
 | Testing | 6 | tdd-guide, e2e-runner, arbiter, mocksmith |
 | DevOps & Cloud | 12 | aws-expert, gcp-expert, azure-expert, terraform-expert |
-| Analysis | 10 | scout, sleuth, data-analyst, profiler, strategist |
+| Analysis | 11 | scout, sleuth, data-analyst, profiler, strategist |
 | Orchestration | 16 | nexus, sentinel, commander, neuron, vault, nitro |
 | Documentation | 5 | technical-writer, doc-updater, copywriter, api-doc-generator |
 | Learning | 7 | self-learner, canavar, reputation-engine, session-replay-analyzer |

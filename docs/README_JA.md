@@ -4,21 +4,21 @@
 
 **Claude Code 上に構築された AI ソフトウェアチーム。**
 
-121 の Agent。223 の Skill。49 の Hook。手作業ゼロ。
+134 の Agent。246 の Skill。53 の Hook。手作業ゼロ。
 
 ## 一目でわかる概要
 
 | 指標 | 数 |
 |--------|-------|
-| Agents | **121** |
-| Skills | **223** |
-| Hooks | **49** |
+| Agents | **134** |
+| Skills | **246** |
+| Hooks | **53** |
 | Rules | **21** |
 | 手作業 | **0** |
 
 ## これは何？
 
-vibecosystem は Claude Code を完全な AI ソフトウェアチームに変えます。単なるアシスタントではなく、設計、構築、レビュー、テストを行い、あらゆるミスから学習する 121 の専門 agent からなる**チーム**です。
+vibecosystem は Claude Code を完全な AI ソフトウェアチームに変えます。単なるアシスタントではなく、設計、構築、レビュー、テストを行い、あらゆるミスから学習する 134 の専門 agent からなる**チーム**です。
 
 カスタムモデルなし。カスタム API なし。Claude Code の hook + agent + rules システムだけを、限界まで活用しています。
 
@@ -59,7 +59,7 @@ Phase 5 (Final):        self-learner + technical-writer
 
 ### 3. 適応型 Hook ローディング
 
-49 の hook がありますが、すべてが同時に実行されるわけではありません。ユーザーの意図に応じて、必要な hook だけが発火します。
+53 の hook がありますが、すべてが同時に実行されるわけではありません。ユーザーの意図に応じて、必要な hook だけが発火します。
 
 <img src="../assets/gif4-hooks.gif" alt="Adaptive Hooks" width="700">
 
@@ -110,7 +110,7 @@ Bug reproduction → replay          (backup: sleuth)
 │                                                         │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐              │
 │  │  Hooks   │  │  Agents  │  │  Skills  │              │
-│  │  (49)    │→ │  (121)   │← │  (223)   │              │
+│  │  (53)    │→ │  (134)   │← │  (246)   │              │
 │  └────┬─────┘  └────┬─────┘  └──────────┘              │
 │       │              │                                   │
 │       ▼              ▼                                   │
@@ -135,13 +135,13 @@ Bug reproduction → replay          (backup: sleuth)
 
 | カテゴリ | 数 | 例 |
 |----------|-------|---------|
-| Core Dev | 12 | frontend-dev, backend-dev, kraken, spark, devops |
+| Core Dev | 13 | frontend-dev, backend-dev, kraken, spark, devops |
 | Review & QA | 8 | code-reviewer, security-reviewer, verifier, qa-engineer |
 | Domain Experts | 35 | graphql-expert, kubernetes-expert, ddd-expert, redis-expert |
 | Architecture | 8 | architect, planner, clean-arch-expert, cqrs-expert |
 | Testing | 6 | tdd-guide, e2e-runner, arbiter, mocksmith |
 | DevOps & Cloud | 12 | aws-expert, gcp-expert, azure-expert, terraform-expert |
-| Analysis | 10 | scout, sleuth, data-analyst, profiler, strategist |
+| Analysis | 11 | scout, sleuth, data-analyst, profiler, strategist |
 | Orchestration | 16 | nexus, sentinel, commander, neuron, vault, nitro |
 | Documentation | 5 | technical-writer, doc-updater, copywriter, api-doc-generator |
 | Learning | 7 | self-learner, canavar, reputation-engine, session-replay-analyzer |

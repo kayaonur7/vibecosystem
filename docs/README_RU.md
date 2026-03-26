@@ -6,7 +6,7 @@
 
 **Команда разработки на базе ИИ, построенная на Claude Code.**
 
-121 agents. 223 skills. 49 hooks. Ноль ручной работы.
+134 agents. 246 skills. 53 hooks. Ноль ручной работы.
 
 <img src="../assets/gif1-numbers.gif" alt="Ecosystem Numbers" width="700">
 
@@ -18,9 +18,9 @@
 
 | Показатель | Количество |
 |------------|------------|
-| Agents | **121** |
-| Skills | **223** |
-| Hooks | **49** |
+| Agents | **134** |
+| Skills | **246** |
+| Hooks | **53** |
 | Rules | **21** |
 | Ручная работа | **0** |
 
@@ -28,7 +28,7 @@
 
 ## Что это?
 
-vibecosystem превращает Claude Code в полноценную ИИ-команду разработки. Не одного ассистента -- **команду** из 121 специализированных агентов, которые планируют, создают, проверяют, тестируют и учатся на каждой ошибке.
+vibecosystem превращает Claude Code в полноценную ИИ-команду разработки. Не одного ассистента -- **команду** из 134 специализированных агентов, которые планируют, создают, проверяют, тестируют и учатся на каждой ошибке.
 
 Без собственной модели. Без собственного API. Только система hooks + agents + rules Claude Code, использованная на максимум.
 
@@ -71,7 +71,7 @@ Phase 5 (Final):        self-learner + technical-writer
 
 ### 3. Адаптивная загрузка хуков
 
-Существует 49 хуков, но они не запускаются все одновременно. Намерение определяет, какие хуки срабатывают.
+Существует 53 хуков, но они не запускаются все одновременно. Намерение определяет, какие хуки срабатывают.
 
 <img src="../assets/gif4-hooks.gif" alt="Adaptive Hooks" width="700">
 
@@ -124,7 +124,7 @@ Bug reproduction → replay          (backup: sleuth)
 │                                                         │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐              │
 │  │  Hooks   │  │  Agents  │  │  Skills  │              │
-│  │  (49)    │→ │  (121)   │← │  (223)   │              │
+│  │  (53)    │→ │  (134)   │← │  (246)   │              │
 │  └────┬─────┘  └────┬─────┘  └──────────┘              │
 │       │              │                                   │
 │       ▼              ▼                                   │
@@ -151,13 +151,13 @@ Bug reproduction → replay          (backup: sleuth)
 
 | Категория | Количество | Примеры |
 |-----------|------------|---------|
-| Core Dev | 12 | frontend-dev, backend-dev, kraken, spark, devops |
+| Core Dev | 13 | frontend-dev, backend-dev, kraken, spark, devops |
 | Review & QA | 8 | code-reviewer, security-reviewer, verifier, qa-engineer |
 | Domain Experts | 35 | graphql-expert, kubernetes-expert, ddd-expert, redis-expert |
 | Architecture | 8 | architect, planner, clean-arch-expert, cqrs-expert |
 | Testing | 6 | tdd-guide, e2e-runner, arbiter, mocksmith |
 | DevOps & Cloud | 12 | aws-expert, gcp-expert, azure-expert, terraform-expert |
-| Analysis | 10 | scout, sleuth, data-analyst, profiler, strategist |
+| Analysis | 11 | scout, sleuth, data-analyst, profiler, strategist |
 | Orchestration | 16 | nexus, sentinel, commander, neuron, vault, nitro |
 | Documentation | 5 | technical-writer, doc-updater, copywriter, api-doc-generator |
 | Learning | 7 | self-learner, canavar, reputation-engine, session-replay-analyzer |

@@ -4,21 +4,21 @@
 
 **Claude Code पर बनी AI सॉफ्टवेयर टीम।**
 
-121 Agent। 223 skill। 49 hook। शून्य मैनुअल काम।
+134 Agent। 246 skill। 53 hook। शून्य मैनुअल काम।
 
 ## एक नज़र में
 
 | मापदंड | संख्या |
 |--------|-------|
-| Agents | **121** |
-| Skills | **223** |
-| Hooks | **49** |
+| Agents | **134** |
+| Skills | **246** |
+| Hooks | **53** |
 | Rules | **21** |
 | मैनुअल काम | **0** |
 
 ## यह क्या है?
 
-vibecosystem Claude Code को एक पूर्ण AI सॉफ्टवेयर टीम में बदल देता है। यह कोई अकेला असिस्टेंट नहीं है -- यह 121 विशेषज्ञ agent की एक **टीम** है जो योजना बनाती है, निर्माण करती है, रिव्यू करती है, टेस्ट करती है, और हर गलती से सीखती है।
+vibecosystem Claude Code को एक पूर्ण AI सॉफ्टवेयर टीम में बदल देता है। यह कोई अकेला असिस्टेंट नहीं है -- यह 134 विशेषज्ञ agent की एक **टीम** है जो योजना बनाती है, निर्माण करती है, रिव्यू करती है, टेस्ट करती है, और हर गलती से सीखती है।
 
 कोई कस्टम मॉडल नहीं। कोई कस्टम API नहीं। बस Claude Code का hook + agent + rules सिस्टम, अपनी पूरी क्षमता तक इस्तेमाल किया गया।
 
@@ -59,7 +59,7 @@ Phase 5 (Final):        self-learner + technical-writer
 
 ### 3. एडैप्टिव Hook लोडिंग
 
-49 hook मौजूद हैं लेकिन सभी एक साथ नहीं चलते। उपयोगकर्ता की मंशा तय करती है कि कौन से hook सक्रिय होंगे।
+53 hook मौजूद हैं लेकिन सभी एक साथ नहीं चलते। उपयोगकर्ता की मंशा तय करती है कि कौन से hook सक्रिय होंगे।
 
 <img src="../assets/gif4-hooks.gif" alt="Adaptive Hooks" width="700">
 
@@ -110,7 +110,7 @@ Bug reproduction → replay          (backup: sleuth)
 │                                                         │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐              │
 │  │  Hooks   │  │  Agents  │  │  Skills  │              │
-│  │  (49)    │→ │  (121)   │← │  (223)   │              │
+│  │  (53)    │→ │  (134)   │← │  (246)   │              │
 │  └────┬─────┘  └────┬─────┘  └──────────┘              │
 │       │              │                                   │
 │       ▼              ▼                                   │
@@ -135,13 +135,13 @@ Bug reproduction → replay          (backup: sleuth)
 
 | श्रेणी | संख्या | उदाहरण |
 |----------|-------|---------|
-| Core Dev | 12 | frontend-dev, backend-dev, kraken, spark, devops |
+| Core Dev | 13 | frontend-dev, backend-dev, kraken, spark, devops |
 | Review & QA | 8 | code-reviewer, security-reviewer, verifier, qa-engineer |
 | Domain Experts | 35 | graphql-expert, kubernetes-expert, ddd-expert, redis-expert |
 | Architecture | 8 | architect, planner, clean-arch-expert, cqrs-expert |
 | Testing | 6 | tdd-guide, e2e-runner, arbiter, mocksmith |
 | DevOps & Cloud | 12 | aws-expert, gcp-expert, azure-expert, terraform-expert |
-| Analysis | 10 | scout, sleuth, data-analyst, profiler, strategist |
+| Analysis | 11 | scout, sleuth, data-analyst, profiler, strategist |
 | Orchestration | 16 | nexus, sentinel, commander, neuron, vault, nitro |
 | Documentation | 5 | technical-writer, doc-updater, copywriter, api-doc-generator |
 | Learning | 7 | self-learner, canavar, reputation-engine, session-replay-analyzer |

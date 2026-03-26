@@ -85,7 +85,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: hooks
-        run: npm ci
+        run: npm install --ignore-scripts
 
       - name: Audit dependencies
         working-directory: hooks

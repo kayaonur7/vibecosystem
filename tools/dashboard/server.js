@@ -10,6 +10,7 @@ const { WebSocketServer } = require('ws');
 
 const WS_PORT = 3847;
 const HTTP_PORT = 3848;
+const AUTH_TOKEN = process.env.DASHBOARD_AUTH_TOKEN || null;
 const CANAVAR_DIR = path.join(require('os').homedir(), '.claude', 'canavar');
 const EVENTS_LOG = path.join(require('os').homedir(), '.claude', 'agent-events.jsonl');
 const LEDGER_PATH = path.join(CANAVAR_DIR, 'error-ledger.jsonl');
@@ -158,6 +159,15 @@ const wsHttpServer = http.createServer((req, res) => {
     req.on('end', () => {
       try {
         const event = JSON.parse(body);
+        // Event schema validation
+        if (!event || typeof event !== 'object' || !event.type || typeof event.type !== 'string') {
+          res.writeHead(400, { 'Content-Type': 'application/json' });
+          res.end('{"error":"invalid event: must have type field"}');
+          return;
+        }
+        if (!event.timestamp) {
+          event.timestamp = new Date().toISOString();
+        }
         addEvent(event);
         // Tum WS client'lara broadcast et
         wss.clients.forEach(client => {
@@ -202,19 +212,31 @@ wsHttpServer.listen(WS_PORT, '127.0.0.1', () => {
 });
 
 // === HTTP Server (port 3848) ===
+function checkAuth(req, res) {
+  if (!AUTH_TOKEN) return true; // auth disabled if no token set
+  const authHeader = req.headers['authorization'];
+  if (authHeader === `Bearer ${AUTH_TOKEN}`) return true;
+  res.writeHead(401, { 'Content-Type': 'application/json' });
+  res.end('{"error":"unauthorized"}');
+  return false;
+}
+
 const httpServer = http.createServer((req, res) => {
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:3848');
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'DENY');
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
   if (req.method === 'OPTIONS') {
     res.writeHead(204);
     res.end();
     return;
   }
+
+  // Auth check for API endpoints
+  if (req.url?.startsWith('/api/') && !checkAuth(req, res)) return;
 
   // REST API
   if (req.url === '/api/errors') {
@@ -268,6 +290,11 @@ const httpServer = http.createServer((req, res) => {
 httpServer.listen(HTTP_PORT, '127.0.0.1', () => {
   console.log(`[HTTP] Dashboard UI on http://127.0.0.1:${HTTP_PORT}`);
   console.log(`[vibecosystem] Agent Monitoring Dashboard v2.0 ready`);
+  if (AUTH_TOKEN) {
+    console.log(`[AUTH] API authentication enabled (DASHBOARD_AUTH_TOKEN set)`);
+  } else {
+    console.log(`[AUTH] API authentication disabled (set DASHBOARD_AUTH_TOKEN to enable)`);
+  }
 });
 
 // Graceful shutdown

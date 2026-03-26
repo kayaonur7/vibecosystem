@@ -131,6 +131,11 @@ def get_recommendations(project_path: str) -> list:
     """Proje dizinine gore MCP onerileri dondur."""
     recommendations = []
 
+    # Normalize and validate path
+    project_path = os.path.realpath(project_path)
+    if not os.path.isdir(project_path):
+        return recommendations
+
     try:
         project_files = os.listdir(project_path)
     except OSError:

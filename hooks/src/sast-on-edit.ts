@@ -83,6 +83,18 @@ const SECURITY_PATTERNS: SecurityPattern[] = [
     message: 'SQL sorgusunda string birlestirme tespit edildi - parameterized query kullan',
   },
   {
+    pattern: /(?:SELECT|INSERT|UPDATE|DELETE|DROP|ALTER|CREATE)\b.*["'`]\s*\+\s*\w+/i,
+    severity: 'CRITICAL',
+    category: 'SQL Injection',
+    message: 'SQL sorgusunda string birlestirme tespit edildi (reverse) - parameterized query kullan',
+  },
+  {
+    pattern: /\.(?:execute|query|raw)\s*\(\s*["'`].*\+/i,
+    severity: 'CRITICAL',
+    category: 'SQL Injection',
+    message: 'DB execute/query/raw icinde string birlestirme - parameterized query kullan',
+  },
+  {
     pattern: /(?:SELECT|INSERT|UPDATE|DELETE)\b.*\$\{/i,
     severity: 'CRITICAL',
     category: 'SQL Injection',
